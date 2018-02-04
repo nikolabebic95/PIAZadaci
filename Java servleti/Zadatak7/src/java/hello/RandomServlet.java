@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class RandomServlet extends HttpServlet {
 
-    private ArrayList<Integer> list = new ArrayList<>();
+    private final ArrayList<Integer> list = new ArrayList<>();
     
     @Override
     public void init() throws ServletException {
