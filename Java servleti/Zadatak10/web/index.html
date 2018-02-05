@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Login page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>            
+            function checkUsername() {
+                usernameRegex = /^[a-zA-Z]........*$/;
+                return usernameRegex.test(document.form.username.value);
+            }
+            
+            function checkPassword() {
+                uppercaseRegex = /^.*[A-Z].*$/;
+                lowercaseRegex = /^.*[a-z].*$/;
+                numberRegex = /^.*[0-9].*$/;
+                specialRegex = /^.*[#?!@$%^&*-].*$/;
+                str = document.form.password.value;
+                return (str.length >= 8 &&
+                        uppercaseRegex.test(str) &&
+                        lowercaseRegex.test(str) &&
+                        numberRegex.test(str) &&
+                        specialRegex.test(str));
+            }
+            
+            function checkEverything() {
+                if (!checkUsername()) {
+                    alert("Username not correct");
+                } else if (!checkPassword()) {
+                    alert("Password not correct");
+                } else {
+                    document.form.submit();
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <form action="login" method="POST" name="form">
+            Input user name and password
+            <br />
+            <input type="text" name="username" value="" />
+            <br />
+            <input type="password" name="password" value="" />
+            <br />
+            <input type="button" onclick="checkEverything()" value="Log in" />
+        </form>
+    </body>
+</html>
