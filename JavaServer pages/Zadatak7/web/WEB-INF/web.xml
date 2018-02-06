@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>ShowGpa</servlet-name>
+        <servlet-class>sevlets.ShowGpa</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowPassed</servlet-name>
+        <servlet-class>sevlets.ShowPassed</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateExam</servlet-name>
+        <servlet-class>sevlets.UpdateExam</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowGpa</servlet-name>
+        <url-pattern>/ShowGpa</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowPassed</servlet-name>
+        <url-pattern>/ShowPassed</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateExam</servlet-name>
+        <url-pattern>/UpdateExam</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
+    </dependency>
+</web-app>
