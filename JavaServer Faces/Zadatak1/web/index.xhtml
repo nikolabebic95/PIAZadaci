@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Zadatak 1</title>
+    </h:head>
+    <h:body>
+        <h1>Log in</h1>
+        <br />
+        <h:form>
+            <table>
+                <tr>
+                    <td>
+                        Username:
+                    </td>
+                    <td>
+                        <h:inputText value="#{userBean.username}" required="true" requiredMessage="Username is required" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Password
+                    </td>
+                    <td>
+                        <h:inputSecret value="#{userBean.password}" required="true" requiredMessage="Password is required" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Number of tickets
+                    </td>
+                    <td>
+                        <h:inputText value="#{userBean.num}" required="true" requiredMessage="Number is required" validatorMessage="Number must be in range [1,8]">
+                            <f:validateLongRange minimum="1" maximum="8" />
+                        </h:inputText>
+                    </td>
+                </tr>
+            </table>
+            
+            <h:commandButton value="Log in" action="data" />
+        </h:form>
+    </h:body>
+</html>
+
