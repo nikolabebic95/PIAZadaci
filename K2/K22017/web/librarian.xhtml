@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Librarian</title>
+    </h:head>
+    <h:body>
+        <h1>Librarian data</h1>
+        <h1>Member data</h1>
+        First name: #{userBean.korisnik.ime}
+        <br />
+        Last name: #{userBean.korisnik.prezime}
+        <br />
+        Username: #{userBean.username}
+        <br />
+        
+        <h2>Requests</h2>
+        
+        <table>
+            <thead>
+                <th>
+                    Username
+                </th>
+                <th>
+                    Book title
+                </th>
+                <th>
+                    Grant request
+                </th>
+            </thead>
+            <c:forEach var="item" items="#{userBean.requests}" varStatus="loop">
+                <tr>
+                    <td>
+                        #{item.username}
+                    </td>
+                    <td>
+                        #{item.naslov}
+                    </td>
+                    <td>
+                        <h:form>
+                            <h:commandButton value="Grant request" action="#{userBean.grantRequest(loop.index)}" /> 
+                        </h:form>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+        
+        <h:form>
+            <h:commandButton value="Log out" action="#{userBean.logout}" />
+        </h:form>
+    </h:body>
+</html>
+
