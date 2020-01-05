@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Ski skolica 2017</title>
+    </h:head>
+    <h:body>
+        <h:form>
+        <c:if test="#{user.groupA.size() > 0}">
+        <h:selectBooleanCheckbox value="#{user.groupAchecked}"/> Group A<br/>
+        <table>
+            <thead>
+                <th>
+                    FirstName
+                </th>
+                <th>
+                    LastName
+                </th>
+            </thead>
+            <tbody>
+                <c:forEach items="#{user.groupA}" var="u" varStatus="loop">
+                    <tr>
+                        <td>
+                            #{u.ime}
+                        </td>
+                        <td>
+                            #{u.prezime}
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        </c:if>
+        <c:if test="#{user.groupB.size() > 0}">
+        <h:selectBooleanCheckbox value="#{user.groupBchecked}"/> Group B<br/>
+        <table>
+            <thead>
+                <th>
+                    FirstName
+                </th>
+                <th>
+                    LastName
+                </th>
+            </thead>
+            <tbody>
+                <c:forEach items="#{user.groupB}" var="u" varStatus="loop">
+                    <tr>
+                        <td>
+                            #{u.ime}
+                        </td>
+                        <td>
+                            #{u.prezime}
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        </c:if>
+        <c:if test="#{user.groupC.size() > 0}">
+        <h:selectBooleanCheckbox value="#{user.groupCchecked}"/> Group C<br/>
+        <table>
+            <thead>
+                <th>
+                    FirstName
+                </th>
+                <th>
+                    LastName
+                </th>
+            </thead>
+            <tbody>
+                <c:forEach items="#{user.groupC}" var="u" varStatus="loop">
+                    <tr>
+                        <td>
+                            #{u.ime}
+                        </td>
+                        <td>
+                            #{u.prezime}
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        </c:if>
+        <h:commandButton action="#{user.completeTraining()}" value="Training completed"/>
+        </h:form>
+    </h:body>
+</html>
+

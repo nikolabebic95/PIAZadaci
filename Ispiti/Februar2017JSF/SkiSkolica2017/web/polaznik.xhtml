@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Ski skolica 2017</title>
+    </h:head>
+    <h:body>
+        Username: #{user.username} <br/>
+        First name: #{user.firstName} <br/>
+        Last name: #{user.lastName} <br/>
+        Experience: #{user.experience} years <br/>
+        <c:if test="#{user.wantLessons}">
+            Lessons wanted
+        </c:if>
+        <c:if test="#{!user.wantLessons}">
+            Lessons not wanted
+        </c:if>
+        <h:form>
+            <h:commandButton action="#{user.changeInterest()}" value="Change interest"/>
+        </h:form>
+        <br/>
+        
+        <h:form id="search">
+            Name:<br/>
+            <h:inputText id="name" /><br/>
+            Type:<br/>
+            <h:inputText id="type" /><br/>
+            <h:commandButton action="#{user.search}" value="Search"/>
+        </h:form>
+        
+        <c:if test="#{user.rented.size() > 0}">
+            Currently rented:
+                <table>
+                    <thead>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Type
+                        </th>
+                        <th>
+                            Price per day
+                        </th>
+                        <th>
+                            Return date
+                        </th>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="#{user.rented}" var="item" varStatus="loop">
+                            <tr>
+                                <td>
+                                    #{item.idopreme.naziv}
+                                </td>
+                                <td>
+                                    #{item.idopreme.vrsta}
+                                </td>
+                                <td>
+                                    #{item.idopreme.cenapodanu}
+                                </td>
+                                <td>
+                                    #{item.planiranovracanje}
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            <h:form>
+                <h:commandButton action="#{user.finishRenting()}" value="Finish renting"/>
+            </h:form>
+        </c:if>
+        <c:if test="#{user.rented.size() == 0}">
+            No currently rented item
+        </c:if>
+        
+        <c:if test="#{user.searched.size() > 0}">
+            <h:form>
+                <table>
+                    <thead>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Type
+                        </th>
+                        <th>
+                            Amount
+                        </th>
+                        <th>
+                            Size
+                        </th>
+                        <th>
+                            Price per day
+                        </th>
+                        <th>
+                            Reserve
+                        </th>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="#{user.searched}" var="item" varStatus="loop">
+                            <tr>
+                                <td>
+                                    #{item.naziv}
+                                </td>
+                                <td>
+                                    #{item.vrsta}
+                                </td>
+                                <td>
+                                    #{item.kolicina}
+                                </td>
+                                <td>
+                                    #{item.velicina}
+                                </td>
+                                <td>
+                                    #{item.cenapodanu}
+                                </td>
+                                <c:if test="#{item.kolicina == 0}">
+                                    <td>
+                                        <div style="color: red">
+                                            Trenutno nema na stanju
+                                        </div>
+                                    </td>
+                                </c:if>
+                                <c:if test="#{item.kolicina != 0}">
+                                    <td>
+                                        <h:selectBooleanCheckbox value="#{user.checked[loop.index]}" />
+                                    </td>
+                                </c:if>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+                Return date:
+                <h:inputText value="#{user.returnDate}" required="true" requiredMessage="Date required!">
+                    <f:convertDateTime pattern="dd-MM-yyyy" />
+                </h:inputText>
+                <h:commandButton action="#{user.reserve()}" value="Reserve"/><br/>
+            </h:form>
+        </c:if>
+        #{user.infoMessage}
+    </h:body>
+</html>
+
